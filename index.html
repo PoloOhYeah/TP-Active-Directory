@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="shortcut icon" href="searchicon.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.min.js"></script>
+<meta name="Copyright" content="PoloOhYeah and Driss">
+<meta name="Publisher" content="PoloOhYeah">
+<meta name="Revisit-After" content="3 days">
+<meta name="Rating" content="general">
+<meta name="Distribution" content="global">
+<meta name="Geography" content="France">
+<meta name="Category" content="internet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+<meta name="description" content="Instruction pour la mise en relation deux quatre machine virtuelle sur VM Ware Workstation." />
+<meta name="keywords" content="moteur de recherche searcharea search area" />
+<meta name="robots" content="all" />
+<meta name="language" content="fr" />
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Area Scans - TP Cyber Windows XP</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<meta name="google-site-verification" content="s2m8mG_JKXf_5G6Hd" /><meta name="google-site-verification" content="s2m8mG_JKXf_5G6HdqnkeVO-xh_qIQujt-RZbGWra6s" />
+    <style>
+body {
+   height: 500px;
+}
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: black;
+  text-align: left;
+}
+</style>
+
+<style>
+    .footer-clean {
+  padding:50px 0;
+  background-color:#fff;
+  color:#4b4c4d;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+  margin-top:14px;
+  margin-bottom:0;
+  font-size:13px;
+  opacity:0.6;
+}
+
+</style>
+<style>
+	input[type="search" i] {
+    appearance: auto;
+    box-sizing: border-box;
+    padding: 1px 2px;
+}
+</style>
+</head>
+
+
+<body>
+
+
+
+    <style>
+        
+    </style>
+
+
+ 
+    
+
+
+
+
+<style>
+  .search-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  #search {
+    border-radius: 20px;
+    padding: 8px;
+    width: 600px;
+  }
+
+  #search-predictions {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+      right: -1px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0 0 20px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+
+  #search-predictions li {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    border-radius: 0;
+    transition: background-color 0.3s ease;
+    text-align: left; /* Ajout de cette ligne */
+  }
+
+  #search-predictions li:not(:last-child) {
+    border-bottom: none;
+  }
+
+  #search-predictions li:hover {
+    background-color: #f2f2f2;
+  }
+
+  .extra-link {
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    color: #888;
+    border-top: 1px solid #ccc;
+  }
+</style>
+
+
+</head>
+<body>
+<style>
+/* Applique à toutes les balises img */
+img {
+    max-width: 100vw;  /* Limite la largeur à 100% de la fenêtre */
+    max-height: 150vh; /* Limite la hauteur à 100% de la fenêtre */
+    width: auto;       /* Ajuste automatiquement la largeur si la hauteur est atteinte */
+    height: auto;      /* Ajuste automatiquement la hauteur si la largeur est atteinte */
+    display: block;    /* Supprime les espaces blancs autour de l'image */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+</style>
+<center><img src="logoareascans.png"></center>
+
+<br>
+<bR>
+  <center>
+
+<h2>Instruction détaillé pour configurer Active Directory sur une VM Server 2003</h2>
+<br>
+<br>
+<h4>Pour commencez vous allez démarrer toutes vos VM qui sont déjà configuré en IP Statique <a href="https://poloohyeah.github.io/AreaScans-TPCYBER/tpcyber/">(voir ancien TP)</a></h4>
+<p>Vous avez comme VM, deux XP et un Serveur 2003 :</p>
+<br>
+<img src="vm1.png">
+<br>
+<h4>Après avoir démarrer toutes les VM, allez sur Serveur AD et ouvrez une invite de commande :</h4>
+<p>Pour ensuite taper dcpromo : </p>
+<br>
+<img src="vm2.png">
+<br>
+<p>Cela va alors vous ouvrir l'assistant d'installation de Active Directory et nous allons donc créer notre premier domaine !</p>
+<h4>Cliquez deux fois sur suivant et cliquez sur "pour un nouveau domaine" :</h4>
+<br>
+<img src="vm3.png">
+<br>
+<p>Cliquez sur "Domaine pour une nouvelle fôret" puis sur suivant</p>
+<br>
+<img src="vm4.png">
+<br>
+<h4>Vous allez créer le nom DNS du domaine en mettant "lerebours.fr" : </h4>
+<br>
+<br>
+<h4>Vous allez laisser le nom NetBIOS "LEREBOURS" et vous cliquez sur suivant :</h4>
+<br>
+<img src="vm5.png">
+<br>
+<h4>Ensuite cliquez sur suivant puis suivant pour arriver ici :</h4>
+<br>
+<img src="vm6.png">
+<br>
+<p>Rester sur "Installer et configurer le serveur DNS" puis cliquez sur suivant ensuite laisser l'option du bas et suivant encore :</p>
+<br>
+<img src="vm7.png">
+<br>
+<h4>Vous allez saisir le mdp "Cmsi2026!" puis suivant :</h4>
+<br>
+<img src="vm8.png">
+<br>
+<h4>Ensuite sur la page de résumé cliquez sur suivant et le domaine va se créer :</h4>
+<p>Après cela cliquez sur "terminer" : </p>
+<br>
+<img src="vm9.png">
+<br>
+<h4>Il vous proposera alors de redémarrer le serveur, donc faites le !<h4>
+<p>Le redémarrage peut être long donc patienter le temps qu'il faudra !</p>
+<br>
+<br>
+<img src="vm10.png">
+<h5>Un gros GG a vous si vous avez réussit sans vous casser la tête !</h5>
+<br>
+<br>
+<h4>Après avoir redémarrer connectez vous a la session :</h4>
+<p>Vérifiez bien que vous êtes sur LEREBOURS et non en local :</p>
+<br>
+<img src="vm11.png">
+<br>
+<h4>Une fois connecter, nous allons allez sur les VMs XP :</h4>
+<p>Ci-dessous le screen du serveur 2003 connecter :</p>
+<img src="vm12.png">
+<br>
+<br>
+<h4>Une fois sur la VM Windows XP "Client1 AD :</h4>
+<p>Faites clique droit sur le poste de travail puis sur propriété :</p>
+<img src="vm13.png">
+<br>
+<h4>Ensuite allez dans "Nom de l'ordinateur" et cliquez sur modifier :</h4>
+<br>
+<img src="vm14.png">
+<br>
+<h4>Ensuite dans la case domaine saissisez "lerebours.fr" :</h4>
+<br>
+<img src="vm15.png">
+<br>
+<h4>Il va vous denmander le nom et mot de passse du compte de Serveur 2003 :</h4>
+<p>Administrateur et Cmsi2026!</p>
+<br>
+<img src="vm16.png">
+<br>
+<img src="vm17.png">
+<br>
+<h4>Si tout va bien, vous serrez inclus dans le domaine :</h4>
+<br>
+<img src="vm18.png">
+<br>
+<br>
+<h4>Il va alors vous proposez de redémarrer, faite le :</h4>
+<br>
+<img src="vm19.png">
+<br>
+<br>
+<h5>Félicitation, vous avez inclus votre domaine !</h5>
+<br>
+<img src="gif.gif">
+<br>
+<br>
+<h4>Nous allons revenir sur notre Serveur 2003 et nous allons créer les utilisateurs :</h4>
+<p>Pour se faire allez dans le menu démarrer ==> outil d'administration puis cliquez sur Utilisateurs et ordinateurs Active Directory.</p>
+<br>
+<img src="vm20.png">
+<br>
+<h4>Faites un clique droit sur le domaine sélectionnez nouveau puis Unité d'Organisation :</h4>
+<br>
+<img src="vm21.png">
+<br>
+<h4>Appellez ce dossier "SISR1"</h4>
+<br>
+<h4>Dans ce dossier, créer un utilisateur dedans :</h4>
+<br>
+<img src="vm23.png">
+<br>
+<h4>Créer l'utilisateur du nom de Bob :</h4>
+<p>Ils nous servira pour se connecter sur le poste Client1 AD !</p>
+<img src="vm24.png">
+<br>
+<h4>Mettez le même mot de passe : Cmsi2026!</h4>
+<p>Et cocher "le mot de passe n'expire jamais" :</p>
+<img src="vm25.png">
+<br>
+<h4>Le compte est alors créer !</h4>
+<br>
+<img src="vm27.png">
+<br>
+<br>
+<h5>Nous allons maintenant revenir sur notre poste Client1 AD et se connecter au compte Bob !</h5>
+<br>
+<img src="client1ad.png">
+<br>
+<h4>Après avoir entrer les identifiant, vous serrez connecté !</h4>
+<br>
+<img src="vm28.png">
+<br>
+<br>
+<h5>Vous avez fini cette partie la du TP, 10/10 !</h5>
+<img src="fin.gif">
+<br>
+<br>
+<center><h2>Maintenant, ont vas mettre en place les profils itinérants :</h2></center>
+<br>
+<h3>Faites un clique droit sur votre utilisateur puis propriété :</h3>
+<br>
+<img src="gpio4.png">
+<br>
+<h4>Vous vous débrouiller pour faire en sorte que ça fonctionne EN ADAPTANT avec le profil en question !</h4>
+<p>Cliquez ICI ==> <a href="https://www.it-connect.fr/active-directory-creer-des-profils-itinerants-pour-ses-utilisateurs/">TUTO suplémentaire au cas ou vous êtes con</a></p>
+
+<br>
+<br>
+<img src="">
+<br>
+<h2>Maintenant ont va mettre en place les stratégie de groupe ou GPIO :</h2>
+<br>
+<h3>Faites un clique droit sur le dossier qui stocke votre utilisateurs (Unité d'Organisation) puis propriété :</h3>
+<br>
+<img src="gpio1.png">
+<br>
+<h2>PUIS :</h2>
+<br>
+<img src="gpio2.png">
+<br>
+<h3>Créer vos GPIO, tout en respectant les consigne du prof :</h3>
+<br>
+<img src="gpio3.png">
+<br>
+<img src="end.gif">
+
+<br>
+<h2>Bravo tu as fini le controle apres si tes con comme Victor et ses caprisun a 2 €, bah je rien pour toi mdrr.</h2>
+
+
+
+
+
+
+
+
+
+
+
+</center>
+
+<br>
+<br>
+<center>
+  <!--<img src="searcharea.jpg">-->
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<center>
+<h3><a href="#">INDISPONIBLE</a></h3>
+<h3><a href="#">INDISPONIBLE</a></h3>
+</center>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Le pire code quand ont utilise <br> -->
+    
+
+     <br>
+  <br>
+    <br>
+    <br>
+     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+       <br>
+  <br>
+    <br>
+    <br>
+     <br>
+<style>
+body {
+   height: 500px;
+}
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: rgb(0, 0, 0);
+   text-align: left;
+}
+</style>
+    <br>
+    <br>
+    <br>
+
+
+    <footer>
+<span>© PoloOhYeah and FQuatre / </span>
+ / <a href="https://searcharea.ddns.net/areascans/index.html">Revenir sur Area Scans</a></div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+
+
+
+  <!-- NAVYAAN FOOTER END -->
+
+
+
+<!-- Les crédits de ceux qui fait le site ou participer de loin ou de près -->
+
+
+
+
+
+
+
+
+
+
+    <!--
+ ____    _      _             ____       _                         _   ____       _         
+/ ___|  / \    | |__  _   _  |  _ \ ___ | | ___     __ _ _ __   __| | |  _ \ _ __(_)___ ___ 
+\___ \ / _ \   | '_ \| | | | | |_) / _ \| |/ _ \   / _` | '_ \ / _` | | | | | '__| / __/ __|
+ ___) / ___ \  | |_) | |_| | |  __/ (_) | | (_) | | (_| | | | | (_| | | |_| | |  | \__ \__ \
+|____/_/   \_\ |_.__/ \__, | |_|   \___/|_|\___/   \__,_|_| |_|\__,_| |____/|_|  |_|___/___/
+                      
+ ____    _    ___    _                         ____       _        ___  _  __   __         _     
+/ ___|  / \  |_ _|  / \     _ __   __ _ _ __  |  _ \ ___ | | ___  / _ \| |_\ \ / /__  __ _| |__  
+\___ \ / _ \  | |  / _ \   | '_ \ / _` | '__| | |_) / _ \| |/ _ \| | | | '_ \ V / _ \/ _` | '_ \ 
+ ___) / ___ \ | | / ___ \  | |_) | (_| | |    |  __/ (_) | | (_) | |_| | | | | |  __/ (_| | | | |
+|____/_/   \_\___/_/   \_\ | .__/ \__,_|_|    |_|   \___/|_|\___/ \___/|_| |_|_|\___|\__,_|_| |_|
+                           |_|                                                                   
+             _   _                                 _                               _____                  _          
+            | | | |                               | |                             |  __ \                (_)         
+   ___  _ __| |_| |__   ___   __ _ _ __ __ _ _ __ | |__   ___   _ __   __ _ _ __  | |  | | __ _ _ __ ___  _ _ __ ___ 
+  / _ \| '__| __| '_ \ / _ \ / _` | '__/ _` | '_ \| '_ \ / _ \ | '_ \ / _` | '__| | |  | |/ _` | '_ ` _ \| | '__/ _ \
+ | (_) | |  | |_| | | | (_) | (_| | | | (_| | |_) | | | |  __/ | |_) | (_| | |    | |__| | (_| | | | | | | | | |  __/
+  \___/|_|   \__|_| |_|\___/ \__, |_|  \__,_| .__/|_| |_|\___| | .__/ \__,_|_|    |_____/ \__,_|_| |_| |_|_|_|  \___|
+                              __/ |         | |                | |                                                   
+                             |___/          |_|                |_|                                                   
+                           
+                           -->
+
+
+
+
+</body>
+
+</html>
